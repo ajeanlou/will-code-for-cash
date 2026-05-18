@@ -1,3 +1,8 @@
+import { useRef } from "react";
+import Hud from "./components/Hud.jsx";
+import SignalCanvas from "./components/SignalCanvas.jsx";
+import { usePointerGlow } from "./hooks/usePointerGlow.js";
+
 const countries = [
   "Bahamas",
   "Belize",
@@ -10,8 +15,19 @@ const countries = [
 ];
 
 export default function App() {
+  const layoutRef = useRef(null);
+  usePointerGlow(layoutRef);
+
   return (
-    <div className="layout">
+    <div className="layout" ref={layoutRef}>
+      <SignalCanvas />
+      <div className="glow" aria-hidden="true" />
+      <div className="grain" aria-hidden="true" />
+      <div className="scanlines" aria-hidden="true" />
+      <div className="vignette" aria-hidden="true" />
+
+      <Hud />
+
       <aside className="countries" aria-label="Countries">
         <div className="countries-marquee">
           <ul>
@@ -23,9 +39,20 @@ export default function App() {
       </aside>
 
       <main className="main">
+        <p className="cipher" aria-hidden="true">
+          01010111 01000011 01000110 01000011
+        </p>
+
         <h1 className="site-title">
-          Will code for <span className="accent">cash</span>
+          <span className="title-line">Will code for</span>
+          <span className="title-cash accent" data-text="cash">
+            cash
+          </span>
         </h1>
+
+        <p className="transmission">
+          <span className="blink">▮</span> transmission open — inquire within
+        </p>
       </main>
     </div>
   );
