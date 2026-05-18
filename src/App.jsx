@@ -44,7 +44,7 @@ export default function App() {
         </p>
 
         <h1 className="site-title">
-          <span className="title-line">Will code for</span>
+          <span className="title-line">Will code 4</span>
           <span className="title-cash accent" data-text="cash">
             cash
           </span>

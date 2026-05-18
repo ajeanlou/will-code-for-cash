@@ -1,4 +1,4 @@
-# Will Code for Cash
+# Will Code 4 Cash
 
 Personal freelance landing page.
 
