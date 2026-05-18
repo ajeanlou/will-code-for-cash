@@ -1,0 +1,136 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --text: #e5e5e5;
+  --accent: #4ade80;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.layout {
+  min-height: 100vh;
+  padding-left: 4.25rem;
+}
+
+.countries {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 4.25rem;
+  height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid #1a1a1a;
+  background: var(--bg);
+}
+
+.countries-marquee {
+  height: 100%;
+}
+
+.countries ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+  margin: 0;
+  padding: 2rem 0;
+  list-style: none;
+  animation: countries-scroll 40s linear infinite;
+}
+
+@keyframes countries-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.countries li {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.main {
+  width: 100%;
+}
+
+.site-title {
+  margin: 0;
+  padding: 4rem 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .layout {
+    padding-left: 0;
+    padding-top: 3rem;
+  }
+
+  .countries {
+    width: 100%;
+    height: 3.5rem;
+    border-right: none;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .countries ul {
+    flex-direction: row;
+    gap: 2.5rem;
+    width: max-content;
+    padding: 0 1.5rem;
+    animation: countries-scroll-h 35s linear infinite;
+  }
+
+  .countries li {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+}
+
+@keyframes countries-scroll-h {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countries ul {
+    animation: none !important;
+  }
+}
