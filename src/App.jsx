@@ -14,6 +14,13 @@ const countries = [
   "Argentina",
 ];
 
+const navLinks = [
+  { label: "Work", href: "#work" },
+  { label: "Will Code 4 Cash", href: "#" },
+  { label: "World Tour", href: "#tour" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function App() {
   const layoutRef = useRef(null);
   usePointerGlow(layoutRef);
@@ -21,14 +28,28 @@ export default function App() {
   return (
     <div className="layout" ref={layoutRef}>
       <SignalCanvas />
+      <div className="earth-bg" aria-hidden="true" />
       <div className="glow" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
       <div className="scanlines" aria-hidden="true" />
       <div className="vignette" aria-hidden="true" />
 
+      <header className="site-header">
+        <a className="logo" href="/">
+          wcfc
+        </a>
+        <nav className="site-nav" aria-label="Main">
+          {navLinks.map((link) => (
+            <a key={link.label} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+
       <Hud />
 
-      <aside className="countries" aria-label="Countries">
+      <aside id="tour" className="countries" aria-label="World tour">
         <div className="countries-marquee">
           <ul>
             {[...countries, ...countries].map((country, i) => (
@@ -38,22 +59,24 @@ export default function App() {
         </div>
       </aside>
 
-      <main className="main">
-        <p className="cipher" aria-hidden="true">
-          01010111 01000011 01000110 01000011
-        </p>
-
-        <h1 className="site-title">
-          <span className="title-line">Will code 4</span>
-          <span className="title-cash accent" data-text="cash">
-            cash
-          </span>
+      <section className="hero">
+        <h1 className="hero-title">
+          Will code 4 <span className="hero-cash" data-text="cash">cash</span>
         </h1>
 
+        <div className="hero-ctas">
+          <a className="cta" href="#contact">
+            Hire me
+          </a>
+          <a className="cta" href="#work">
+            View work
+          </a>
+        </div>
+
         <p className="transmission">
-          <span className="blink">▮</span> transmission open — inquire within
+          <span className="blink">▮</span> signal open
         </p>
-      </main>
+      </section>
     </div>
   );
 }
